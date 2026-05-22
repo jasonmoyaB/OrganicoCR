@@ -1,5 +1,6 @@
 import { Outlet, Link } from 'react-router-dom'
 import { DynamicIslandNav } from '../components/DynamicIslandNav'
+import { WhatsAppWidget } from '../components/WhatsAppWidget'
 
 const FOOTER_LINKS = [
   { to: '/', label: 'Inicio' },
@@ -13,6 +14,7 @@ export function StoreLayout() {
   return (
     <div className="flex flex-col min-h-screen bg-brand-cream">
       <DynamicIslandNav />
+      <WhatsAppWidget />
 
       <main className="flex-1">
         <Outlet />

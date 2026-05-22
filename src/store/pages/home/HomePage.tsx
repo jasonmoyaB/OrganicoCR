@@ -151,8 +151,9 @@ export default function HomePage() {
           </h1>
 
           <p className="hero-subtitle text-body-lg">
-            Frutas, verduras y carnes 100% naturales, directamente desde la
-            finca.
+            Cultivado en Costa Rica
+            <br />
+            directamente desde la finca.
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
@@ -207,7 +208,9 @@ export default function HomePage() {
       {/* BENTO GRID */}
       <section className="bg-brand-cream py-32">
         <div className="max-w-7xl mx-auto px-6 lg:px-16">
-          <h2 className="bento-heading text-bento">Cultivado en Costa Rica</h2>
+          <h2 className="bento-heading text-bento">Cultivado en Costa Rica
+            <p>desde la finca</p>
+          </h2>
 
           <div
             className="grid grid-cols-12 grid-flow-dense gap-4"
