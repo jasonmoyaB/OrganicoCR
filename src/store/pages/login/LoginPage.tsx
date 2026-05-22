@@ -62,7 +62,7 @@ export default function LoginPage() {
       {/* LEFT — cinematic editorial panel */}
       <div className="auth-left">
         <img
-          src="public/FotoLogin-register/fotoLogin.jpg"
+          src="/FotoLogin-register/fotoLogin.jpg"
           alt=""
           aria-hidden="true"
           className="auth-left-img"

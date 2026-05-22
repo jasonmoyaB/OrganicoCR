@@ -59,7 +59,7 @@ export default function RegisterPage() {
 
       {/* Faint texture */}
       <img
-        src="public/FotoLogin-register/fotoRegister.jpg"
+        src="/FotoLogin-register/fotoRegister.jpg"
         alt=""
         aria-hidden="true"
         className="absolute inset-0 w-full h-full object-cover pointer-events-none"
