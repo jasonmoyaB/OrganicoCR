@@ -101,9 +101,9 @@ export function PasswordToggle({ isPassword, onToggle }: PasswordToggleProps) {
         <defs>
           {/* Iris gradient for depth */}
           <radialGradient id="irisGradient" cx="35%" cy="35%">
-            <stop offset="0%" stopColor="#2D5D1F" />
-            <stop offset="60%" stopColor="#1F4614" />
-            <stop offset="100%" stopColor="#0F2409" />
+            <stop offset="0%" stopColor="#1B5C4C" />
+            <stop offset="60%" stopColor="#0D3B31" />
+            <stop offset="100%" stopColor="#001810" />
           </radialGradient>
 
           {/* Subtle shadow on iris */}
@@ -132,13 +132,13 @@ export function PasswordToggle({ isPassword, onToggle }: PasswordToggleProps) {
           display: flex;
           align-items: center;
           justify-content: center;
-          color: #1f4614;
+          color: #003023;
           transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
           z-index: 10;
         }
 
         .password-toggle:hover {
-          color: #5dd62c;
+          color: #83C441;
           transform: translateY(-50%) scale(1.1);
         }
 

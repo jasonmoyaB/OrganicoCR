@@ -12,9 +12,9 @@ export default {
       },
       colors: {
         brand: {
-          cream: '#F8F8F8',
-          green: '#337418',
-          lime: '#5DD62C',
+          cream: '#F6FEF9',
+          green: '#003023',
+          lime: '#83C441',
           dark: '#202020',
           black: '#0F0F0F',
         },
