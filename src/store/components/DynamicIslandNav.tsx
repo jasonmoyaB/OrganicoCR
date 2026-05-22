@@ -225,12 +225,12 @@ export function DynamicIslandNav() {
               ))}
             </div>
           </div>
-          <div className="px-10 pb-14">
+          <div className="px-10 pb-14 border-t border-[rgba(0,0,0,0.07)] pt-6">
             <Link
               to="/login"
-              className="block w-full text-center text-stone-500 font-medium py-4 text-sm tracking-[0.05em] hover:text-brand-dark transition-colors border-t border-[rgba(0,0,0,0.06)]"
+              className="block w-full text-center bg-brand-green text-white font-semibold py-4 text-base tracking-wide rounded-2xl hover:bg-opacity-90 active:scale-[0.98] transition-all duration-200 shadow-sm"
             >
-              Iniciar sesion
+              Iniciar sesión
             </Link>
           </div>
         </div>
