@@ -45,5 +45,10 @@
     "onlyBuiltDependencies": [
       "msw"
     ]
+  },
+  "msw": {
+    "workerDirectory": [
+      "public"
+    ]
   }
 }
