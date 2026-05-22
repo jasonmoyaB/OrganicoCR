@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom'
+import { toast } from 'sonner'
 import { useCart } from '@domains/cart/hooks/useCart'
 import { formatPrice } from '@shared/utils/formatPrice'
 import type { Product } from '@domains/catalog/types/product.types'
@@ -36,7 +37,7 @@ export function ProductCard({ product }: Props) {
         <div className="mt-3 flex items-center justify-between">
           <span className="font-bold text-green-700 text-lg">{formatPrice(product.price)}</span>
           <button
-            onClick={() => addItem(product)}
+            onClick={() => { addItem(product); toast.success('Producto agregado correctamente') }}
             disabled={product.stock === 0}
             className="bg-green-600 text-white px-3 py-1.5 rounded-lg text-sm font-medium hover:bg-green-700 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
           >
