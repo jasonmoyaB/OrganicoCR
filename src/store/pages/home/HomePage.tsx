@@ -137,7 +137,7 @@ export default function HomePage() {
       {/* HERO */}
       <section className="hero-section">
         <img
-          src="https://picsum.photos/seed/vegetables-fresh-market/1920/1080"
+          src="https://yotzsagyxelwfftcatxo.supabase.co/storage/v1/object/public/imagenes/fotoheader.avif"
           alt=""
           aria-hidden="true"
           className="hero-bg-img"
@@ -220,7 +220,7 @@ export default function HomePage() {
             {/* Card A — tall left */}
             <div className="col-span-12 lg:col-span-6 row-span-2 rounded-3xl overflow-hidden relative bento-card">
               <img
-                src="https://cloudfront-eu-central-1.images.arcpublishing.com/prisa/MONEL77JFRHBJG2HDRMSJUNDXU.jpg"
+                src="https://yotzsagyxelwfftcatxo.supabase.co/storage/v1/object/public/imagenes/ImgSennoraCultivos.jpg"
                 alt=""
                 aria-hidden="true"
                 className="absolute inset-0 w-full h-full object-cover"
@@ -240,7 +240,7 @@ export default function HomePage() {
             {/* Card B — top right */}
             <div className="col-span-12 lg:col-span-6 rounded-3xl overflow-hidden relative flex flex-col justify-between bento-card">
               <img
-                src="https://comunitaria.com/wp-content/uploads/2024/04/Imagenes-para-articulos-1-1-1.png"
+                src="https://yotzsagyxelwfftcatxo.supabase.co/storage/v1/object/public/imagenes/vegetalessennor.png"
                 alt=""
                 aria-hidden="true"
                 className="absolute inset-0 w-full h-full object-cover"
@@ -263,7 +263,7 @@ export default function HomePage() {
             {/* Card C — bottom right */}
             <div className="col-span-12 lg:col-span-6 rounded-3xl overflow-hidden relative flex flex-col justify-between bento-card">
               <img
-                src="https://peruretail.sfo3.cdn.digitaloceanspaces.com/wp-content/uploads/delivery-moto7.jpg"
+                src="https://yotzsagyxelwfftcatxo.supabase.co/storage/v1/object/public/imagenes/delivery-moto7.jpg"
                 alt=""
                 aria-hidden="true"
                 className="absolute inset-0 w-full h-full object-cover"

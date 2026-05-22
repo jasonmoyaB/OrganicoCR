@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom'
+import { toast } from 'sonner'
 import { useCart } from '@domains/cart/hooks/useCart'
 import { formatPrice } from '@shared/utils/formatPrice'
 import type { Product } from '@domains/catalog/types/product.types'
@@ -22,13 +23,15 @@ export function ProductCard({ product }: Props) {
         )}
       </Link>
       <div className="p-4">
-        {product.isOrganic && (
-          <span className="text-xs bg-green-100 text-green-700 px-2 py-0.5 rounded-full font-medium">
-            🌿 Orgánico
-          </span>
-        )}
+        <div className="h-6 flex items-center mb-0">
+          {product.isOrganic && (
+            <span className="text-xs bg-green-100 text-green-700 px-2 py-0.5 rounded-full font-medium">
+              🌿 Orgánico
+            </span>
+          )}
+        </div>
         <Link to={`/catalog/${product.id}`}>
-          <h3 className="font-semibold text-stone-800 mt-2 hover:text-green-700 transition-colors line-clamp-2">
+          <h3 className="font-semibold text-stone-800 hover:text-green-700 transition-colors line-clamp-2">
             {product.name}
           </h3>
         </Link>
@@ -36,7 +39,7 @@ export function ProductCard({ product }: Props) {
         <div className="mt-3 flex items-center justify-between">
           <span className="font-bold text-green-700 text-lg">{formatPrice(product.price)}</span>
           <button
-            onClick={() => addItem(product)}
+            onClick={() => { addItem(product); toast.success('Producto agregado correctamente') }}
             disabled={product.stock === 0}
             className="bg-green-600 text-white px-3 py-1.5 rounded-lg text-sm font-medium hover:bg-green-700 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
           >

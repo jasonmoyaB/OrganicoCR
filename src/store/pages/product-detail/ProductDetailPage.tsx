@@ -1,5 +1,6 @@
 import { useParams, useNavigate } from 'react-router-dom'
 import { useState } from 'react'
+import { toast } from 'sonner'
 import { useProductById } from '@domains/catalog/hooks/useProductById'
 import { useCart } from '@domains/cart/hooks/useCart'
 import { formatPrice } from '@shared/utils/formatPrice'
@@ -80,7 +81,7 @@ export default function ProductDetailPage() {
               </button>
             </div>
             <button
-              onClick={() => addItem(product, qty)}
+              onClick={() => { addItem(product, qty); toast.success('Producto agregado correctamente') }}
               disabled={product.stock === 0}
               className="flex-1 bg-brand-green text-white py-3 rounded-xl font-semibold hover:bg-brand-dark disabled:opacity-40 disabled:cursor-not-allowed transition-colors"
             >
