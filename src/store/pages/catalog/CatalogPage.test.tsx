@@ -19,7 +19,7 @@ function renderPage() {
 describe('CatalogPage', () => {
   it('shows a search input', () => {
     renderPage()
-    expect(screen.getByPlaceholderText(/buscar/i)).toBeInTheDocument()
+    expect(screen.getByPlaceholderText(/producto/i)).toBeInTheDocument()
   })
 
   it('renders product cards after loading', async () => {

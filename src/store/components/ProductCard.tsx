@@ -12,12 +12,14 @@ export function ProductCard({ product }: Props) {
 
   return (
     <div className="bg-white rounded-xl border border-stone-200 overflow-hidden hover:shadow-md transition-shadow">
-      <Link to={`/catalog/${product.id}`}>
-        <img
-          src={product.imageUrl}
-          alt={product.name}
-          className="w-full h-48 object-cover"
-        />
+      <Link to={`/catalog/${product.id}`} className="block w-full h-48 bg-stone-100">
+        {product.imageUrl ? (
+          <img src={product.imageUrl} alt={product.name} className="w-full h-full object-cover" />
+        ) : (
+          <div className="flex items-center justify-center h-full text-stone-400 text-sm font-medium">
+            {product.name}
+          </div>
+        )}
       </Link>
       <div className="p-4">
         {product.isOrganic && (

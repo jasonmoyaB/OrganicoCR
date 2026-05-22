@@ -9,6 +9,7 @@ export interface Product {
   isOrganic: boolean
   isFeatured: boolean
   slug: string
+  presentation: string | null
 }
 
 export interface Category {
@@ -21,4 +22,7 @@ export interface ProductFilters {
   categoryId?: string
   search?: string
   onlyOrganic?: boolean
+  inStock?: boolean
+  minPrice?: number
+  maxPrice?: number
 }

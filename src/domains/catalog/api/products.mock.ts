@@ -18,6 +18,7 @@ export const mockProducts: Product[] = [
     isOrganic: true,
     isFeatured: true,
     slug: 'cafe-organico-tarrazu',
+    presentation: '350 GR',
   },
   {
     id: 'prod-2',
@@ -30,6 +31,7 @@ export const mockProducts: Product[] = [
     isOrganic: true,
     isFeatured: true,
     slug: 'miel-abejas-silvestres',
+    presentation: '500 GR',
   },
   {
     id: 'prod-3',
@@ -42,6 +44,7 @@ export const mockProducts: Product[] = [
     isOrganic: true,
     isFeatured: false,
     slug: 'aceite-coco-prensado-frio',
+    presentation: '500 ML',
   },
   {
     id: 'prod-4',
@@ -54,6 +57,7 @@ export const mockProducts: Product[] = [
     isOrganic: true,
     isFeatured: false,
     slug: 'jabon-artesanal-aloe-vera',
+    presentation: '100 GR',
   },
   {
     id: 'prod-5',
@@ -66,6 +70,7 @@ export const mockProducts: Product[] = [
     isOrganic: true,
     isFeatured: true,
     slug: 'granola-artesanal-tropical',
+    presentation: '400 GR',
   },
   {
     id: 'prod-6',
@@ -78,5 +83,6 @@ export const mockProducts: Product[] = [
     isOrganic: true,
     isFeatured: false,
     slug: 'te-hierba-limon',
+    presentation: '20 BOLSITAS',
   },
 ]
