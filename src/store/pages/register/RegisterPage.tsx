@@ -1,8 +1,9 @@
-import { useRef } from 'react'
+import { useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
 import gsap from 'gsap'
 import { useGSAP } from '@gsap/react'
 import { LeafIcon } from '@shared/components/icons/LeafIcon'
+import { PasswordToggle } from '@store/components/PasswordToggle'
 
 function ChevronLeft() {
   return (
@@ -19,13 +20,10 @@ const NAME_FIELDS = [
   { id: 'apellido', label: 'Apellido', type: 'text', placeholder: 'Tu apellido' },
 ]
 
-const PASSWORD_FIELDS = [
-  { id: 'password', label: 'Contrasena', type: 'password', placeholder: '••••••••' },
-  { id: 'confirm-password', label: 'Confirmar', type: 'password', placeholder: '••••••••' },
-]
-
 export default function RegisterPage() {
   const pageRef = useRef<HTMLDivElement>(null)
+  const [showPassword, setShowPassword] = useState(false)
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false)
 
   useGSAP(() => {
     gsap.from('.register-card', {
@@ -108,12 +106,36 @@ export default function RegisterPage() {
 
           {/* Password row */}
           <div className="register-field register-field-grid">
-            {PASSWORD_FIELDS.map(f => (
-              <div key={f.id}>
-                <label htmlFor={f.id} className="form-label form-label--light">{f.label}</label>
-                <input id={f.id} type={f.type} placeholder={f.placeholder} className="form-input form-input--light" />
+            <div>
+              <label htmlFor="password" className="form-label form-label--light">Contrasena</label>
+              <div className="relative">
+                <input
+                  id="password"
+                  type={showPassword ? 'text' : 'password'}
+                  placeholder="••••••••"
+                  className="form-input form-input--light pr-12"
+                />
+                <PasswordToggle
+                  isPassword={!showPassword}
+                  onToggle={() => setShowPassword(!showPassword)}
+                />
               </div>
-            ))}
+            </div>
+            <div>
+              <label htmlFor="confirm-password" className="form-label form-label--light">Confirmar</label>
+              <div className="relative">
+                <input
+                  id="confirm-password"
+                  type={showConfirmPassword ? 'text' : 'password'}
+                  placeholder="••••••••"
+                  className="form-input form-input--light pr-12"
+                />
+                <PasswordToggle
+                  isPassword={!showConfirmPassword}
+                  onToggle={() => setShowConfirmPassword(!showConfirmPassword)}
+                />
+              </div>
+            </div>
           </div>
 
           {/* Submit */}

@@ -1,7 +1,9 @@
-import { useRef } from 'react'
+import { useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
 import gsap from 'gsap'
 import { useGSAP } from '@gsap/react'
+import { PasswordToggle } from '@store/components/PasswordToggle'
+
 function ChevronLeft() {
   return (
     <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
@@ -19,6 +21,7 @@ const TRUST = [
 
 export default function LoginPage() {
   const pageRef = useRef<HTMLDivElement>(null)
+  const [showPassword, setShowPassword] = useState(false)
 
   useGSAP(() => {
     gsap.from('.auth-left-img', {
@@ -128,12 +131,18 @@ export default function LoginPage() {
                   Olvide mi contrasena
                 </button>
               </div>
-              <input
-                id="login-password"
-                type="password"
-                placeholder="••••••••"
-                className="form-input form-input--light"
-              />
+              <div className="relative">
+                <input
+                  id="login-password"
+                  type={showPassword ? 'text' : 'password'}
+                  placeholder="••••••••"
+                  className="form-input form-input--light pr-12"
+                />
+                <PasswordToggle
+                  isPassword={!showPassword}
+                  onToggle={() => setShowPassword(!showPassword)}
+                />
+              </div>
             </div>
 
             <div className="login-field mt-1">
