@@ -1,0 +1,191 @@
+<h2>¿Cómo deben sentirse las stat cards?</h2>
+<p class="subtitle">El dashboard es lo primero que ves al entrar — su carácter marca todo el admin</p>
+
+<div class="cards">
+
+  <!-- OPCIÓN A: Números grandes, mínima decoración -->
+  <div class="card" data-choice="a" onclick="toggleSelect(this)">
+    <div class="card-image" style="background:#FAFAF9;padding:16px;height:240px;display:flex;flex-direction:column;gap:10px;">
+      <!-- Header strip -->
+      <div style="display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:4px;">
+        <div>
+          <div style="height:7px;width:28px;background:#C2D5C9;border-radius:2px;margin-bottom:5px;"></div>
+          <div style="height:22px;width:90px;background:#0d1a12;border-radius:4px;"></div>
+        </div>
+        <div style="height:28px;width:28px;border-radius:50%;background:#072f1a;display:flex;align-items:center;justify-content:center;">
+          <span style="font-size:10px;font-weight:700;color:#12D176;font-family:sans-serif;">J</span>
+        </div>
+      </div>
+      <!-- Cards row -->
+      <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:8px;flex:1;">
+        <div style="background:white;border-radius:10px;padding:12px 10px;border:1px solid #EBEBEA;display:flex;flex-direction:column;justify-content:space-between;">
+          <div style="height:8px;width:30px;background:#E5E3DE;border-radius:2px;"></div>
+          <div>
+            <div style="height:26px;width:24px;background:#0d1a12;border-radius:3px;margin-bottom:4px;"></div>
+            <div style="height:6px;width:36px;background:#E5E3DE;border-radius:2px;"></div>
+          </div>
+        </div>
+        <div style="background:white;border-radius:10px;padding:12px 10px;border:1px solid #EBEBEA;display:flex;flex-direction:column;justify-content:space-between;">
+          <div style="height:8px;width:22px;background:#E5E3DE;border-radius:2px;"></div>
+          <div>
+            <div style="height:26px;width:16px;background:#0d1a12;border-radius:3px;margin-bottom:4px;"></div>
+            <div style="height:6px;width:42px;background:#E5E3DE;border-radius:2px;"></div>
+          </div>
+        </div>
+        <div style="background:white;border-radius:10px;padding:12px 10px;border:1px solid #EBEBEA;display:flex;flex-direction:column;justify-content:space-between;">
+          <div style="height:8px;width:34px;background:#E5E3DE;border-radius:2px;"></div>
+          <div>
+            <div style="height:26px;width:28px;background:#0d1a12;border-radius:3px;margin-bottom:4px;"></div>
+            <div style="height:6px;width:32px;background:#E5E3DE;border-radius:2px;"></div>
+          </div>
+        </div>
+        <div style="background:white;border-radius:10px;padding:12px 10px;border:1px solid #EBEBEA;display:flex;flex-direction:column;justify-content:space-between;">
+          <div style="height:8px;width:26px;background:#E5E3DE;border-radius:2px;"></div>
+          <div>
+            <div style="height:26px;width:20px;background:#12D176;border-radius:3px;margin-bottom:4px;"></div>
+            <div style="height:6px;width:38px;background:#E5E3DE;border-radius:2px;"></div>
+          </div>
+        </div>
+      </div>
+      <!-- Activity block -->
+      <div style="background:white;border-radius:10px;padding:12px;border:1px solid #EBEBEA;flex:1;">
+        <div style="height:7px;width:70px;background:#0d1a12;border-radius:2px;margin-bottom:8px;"></div>
+        <div style="display:flex;flex-direction:column;gap:4px;">
+          <div style="height:7px;background:#F5F4F1;border-radius:2px;"></div>
+          <div style="height:7px;background:#F5F4F1;border-radius:2px;width:75%;"></div>
+        </div>
+      </div>
+    </div>
+    <div class="card-body">
+      <h3>A — Número grande, sin icono</h3>
+      <p>El valor domina. Sin icono decorativo. Solo número, label, y un borde sutil. Influencia: Linear, Vercel dashboard.</p>
+    </div>
+  </div>
+
+  <!-- OPCIÓN B: Cards con icono prominente + badge de cambio -->
+  <div class="card" data-choice="b" onclick="toggleSelect(this)">
+    <div class="card-image" style="background:#F7F6F3;padding:14px;height:240px;display:flex;flex-direction:column;gap:8px;">
+      <div style="display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:4px;">
+        <div>
+          <div style="height:7px;width:28px;background:#C2D5C9;border-radius:2px;margin-bottom:5px;"></div>
+          <div style="height:22px;width:90px;background:#0d1a12;border-radius:4px;"></div>
+        </div>
+      </div>
+      <!-- 2x2 grid with icon+number+badge -->
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:7px;flex:1;">
+        <div style="background:white;border-radius:10px;padding:11px;border:1px solid #EBEBEA;">
+          <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:8px;">
+            <div style="width:28px;height:28px;border-radius:8px;background:#0d1a12;display:flex;align-items:center;justify-content:center;">
+              <div style="width:12px;height:9px;border:1.5px solid rgba(18,209,118,0.6);border-radius:2px;"></div>
+            </div>
+            <div style="height:16px;width:28px;border-radius:20px;background:#ECFDF5;display:flex;align-items:center;justify-content:center;">
+              <div style="height:5px;width:18px;background:#12D176;border-radius:2px;"></div>
+            </div>
+          </div>
+          <div style="height:20px;width:22px;background:#0d1a12;border-radius:3px;margin-bottom:3px;"></div>
+          <div style="height:6px;width:44px;background:#E0DED9;border-radius:2px;"></div>
+        </div>
+        <div style="background:white;border-radius:10px;padding:11px;border:1px solid #EBEBEA;">
+          <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:8px;">
+            <div style="width:28px;height:28px;border-radius:8px;background:#F5F4F1;display:flex;align-items:center;justify-content:center;">
+              <div style="width:10px;height:10px;border-radius:50%;border:1.5px solid #9C9790;"></div>
+            </div>
+            <div style="height:16px;width:28px;border-radius:20px;background:#FEF3C7;display:flex;align-items:center;justify-content:center;">
+              <div style="height:5px;width:18px;background:#F59E0B;border-radius:2px;"></div>
+            </div>
+          </div>
+          <div style="height:20px;width:16px;background:#0d1a12;border-radius:3px;margin-bottom:3px;"></div>
+          <div style="height:6px;width:38px;background:#E0DED9;border-radius:2px;"></div>
+        </div>
+        <div style="background:white;border-radius:10px;padding:11px;border:1px solid #EBEBEA;">
+          <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:8px;">
+            <div style="width:28px;height:28px;border-radius:8px;background:#F5F4F1;display:flex;align-items:center;justify-content:center;">
+              <div style="width:11px;height:11px;border-radius:50%;border:1.5px solid #9C9790;"></div>
+            </div>
+          </div>
+          <div style="height:20px;width:26px;background:#0d1a12;border-radius:3px;margin-bottom:3px;"></div>
+          <div style="height:6px;width:50px;background:#E0DED9;border-radius:2px;"></div>
+        </div>
+        <div style="background:#072f1a;border-radius:10px;padding:11px;border:1px solid transparent;">
+          <div style="width:28px;height:28px;border-radius:8px;background:rgba(18,209,118,0.15);margin-bottom:8px;display:flex;align-items:center;justify-content:center;">
+            <div style="width:10px;height:10px;border-radius:2px;background:#12D176;"></div>
+          </div>
+          <div style="height:20px;width:18px;background:#12D176;border-radius:3px;margin-bottom:3px;"></div>
+          <div style="height:6px;width:40px;background:rgba(255,255,255,0.15);border-radius:2px;"></div>
+        </div>
+      </div>
+    </div>
+    <div class="card-body">
+      <h3>B — Icono + badge de tendencia</h3>
+      <p>Icono sobre fondo tonal, número, y badge de variación. Una card destacada en color de marca. Carácter: dashboard ejecutivo.</p>
+    </div>
+  </div>
+
+  <!-- OPCIÓN C: Horizontal strip cards / list style -->
+  <div class="card" data-choice="c" onclick="toggleSelect(this)">
+    <div class="card-image" style="background:#FAFAF9;padding:14px;height:240px;display:flex;flex-direction:column;gap:8px;">
+      <div style="display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:4px;">
+        <div>
+          <div style="height:7px;width:28px;background:#C2D5C9;border-radius:2px;margin-bottom:5px;"></div>
+          <div style="height:22px;width:90px;background:#0d1a12;border-radius:4px;"></div>
+        </div>
+      </div>
+      <!-- Horizontal strip cards -->
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:7px;">
+        <div style="background:white;border-radius:10px;padding:12px 14px;border:1px solid #EBEBEA;display:flex;align-items:center;gap:10px;">
+          <div style="width:36px;height:36px;border-radius:8px;background:#F5F4F1;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+            <div style="width:14px;height:10px;border:1.5px solid #9C9790;border-radius:2px;"></div>
+          </div>
+          <div>
+            <div style="height:18px;width:20px;background:#0d1a12;border-radius:3px;margin-bottom:3px;"></div>
+            <div style="height:6px;width:44px;background:#E5E3DE;border-radius:2px;"></div>
+          </div>
+        </div>
+        <div style="background:white;border-radius:10px;padding:12px 14px;border:1px solid #EBEBEA;display:flex;align-items:center;gap:10px;">
+          <div style="width:36px;height:36px;border-radius:8px;background:#ECFDF5;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+            <div style="width:12px;height:12px;border-radius:50%;border:1.5px solid #12D176;"></div>
+          </div>
+          <div>
+            <div style="height:18px;width:14px;background:#0d1a12;border-radius:3px;margin-bottom:3px;"></div>
+            <div style="height:6px;width:38px;background:#E5E3DE;border-radius:2px;"></div>
+          </div>
+        </div>
+        <div style="background:white;border-radius:10px;padding:12px 14px;border:1px solid #EBEBEA;display:flex;align-items:center;gap:10px;">
+          <div style="width:36px;height:36px;border-radius:8px;background:#F5F4F1;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+            <div style="width:12px;height:12px;border-radius:50%;border:1.5px solid #9C9790;"></div>
+          </div>
+          <div>
+            <div style="height:18px;width:26px;background:#0d1a12;border-radius:3px;margin-bottom:3px;"></div>
+            <div style="height:6px;width:50px;background:#E5E3DE;border-radius:2px;"></div>
+          </div>
+        </div>
+        <div style="background:white;border-radius:10px;padding:12px 14px;border:1px solid #EBEBEA;display:flex;align-items:center;gap:10px;">
+          <div style="width:36px;height:36px;border-radius:8px;background:#F5F4F1;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+            <div style="width:10px;height:10px;border:1.5px solid #9C9790;border-radius:2px;"></div>
+          </div>
+          <div>
+            <div style="height:18px;width:18px;background:#0d1a12;border-radius:3px;margin-bottom:3px;"></div>
+            <div style="height:6px;width:42px;background:#E5E3DE;border-radius:2px;"></div>
+          </div>
+        </div>
+      </div>
+      <!-- Wide activity table -->
+      <div style="background:white;border-radius:10px;padding:12px;border:1px solid #EBEBEA;flex:1;">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;">
+          <div style="height:7px;width:70px;background:#0d1a12;border-radius:2px;"></div>
+          <div style="height:16px;width:40px;border-radius:4px;background:#F5F4F1;"></div>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:5px;">
+          <div style="height:8px;background:#F5F4F1;border-radius:2px;"></div>
+          <div style="height:8px;background:#F5F4F1;border-radius:2px;width:85%;"></div>
+          <div style="height:8px;background:#F5F4F1;border-radius:2px;width:90%;"></div>
+        </div>
+      </div>
+    </div>
+    <div class="card-body">
+      <h3>C — Card horizontal icono+número</h3>
+      <p>Icono a la izquierda, número y label a la derecha. Más compacto y legible de un vistazo. Carácter: operativo y directo.</p>
+    </div>
+  </div>
+
+</div>
