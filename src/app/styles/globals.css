@@ -87,16 +87,6 @@
     flex-shrink: 0;
   }
 
-  .island-logo-circle {
-    width: 1.875rem;
-    height: 1.875rem;
-    background: #003023;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-
   .island-activity-dot {
     position: absolute;
     top: -1px;
@@ -106,14 +96,6 @@
     background: #83C441;
     border-radius: 50%;
     border: 1.5px solid rgba(255, 255, 255, 0.95);
-  }
-
-  .island-logo-text {
-    font-size: 0.9375rem;
-    font-weight: 700;
-    color: #111827;
-    white-space: nowrap;
-    letter-spacing: -0.02em;
   }
 
   .island-expanded {

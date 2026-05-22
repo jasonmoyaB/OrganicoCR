@@ -16,7 +16,7 @@ export function StoreLayout() {
       <DynamicIslandNav />
       <WhatsAppWidget />
 
-      <main className="flex-1">
+      <main className="flex-1 pt-16 md:pt-0">
         <Outlet />
       </main>
 

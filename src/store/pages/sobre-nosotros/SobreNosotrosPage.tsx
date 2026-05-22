@@ -242,12 +242,13 @@ export default function SobreNosotrosPage() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-32 bg-brand-black text-brand-cream px-6">
-        <div className="max-w-3xl mx-auto text-center">
-          <h2 className="text-cta-h2 font-black leading-tight mb-6">
+      <section className="py-32 text-brand-cream px-6 relative overflow-hidden bg-gradient-to-b from-brand-black via-[#05140e] to-[#00281e]">
+        <div className="max-w-3xl mx-auto text-center relative z-10">
+          <h2 className="text-cta-h2 font-black leading-tight mb-4">
             Vive el Sabor Auténtico
           </h2>
-          <p className="text-body-lg mb-10 max-w-xl mx-auto text-brand-cream/80">
+          <div className="w-12 h-1 bg-brand-lime rounded-full mx-auto mb-8" />
+          <p className="text-body-lg mb-10 max-w-xl mx-auto text-brand-cream/55 leading-relaxed">
             Cada compra es un apoyo directo a productores locales y a la sostenibilidad de Costa Rica.
           </p>
           <a
