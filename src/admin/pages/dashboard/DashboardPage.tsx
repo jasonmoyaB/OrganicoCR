@@ -1,10 +1,13 @@
 import { useProducts } from '@domains/catalog/hooks/useProducts'
 import { useCart } from '@domains/cart/hooks/useCart'
 import { formatPrice } from '@shared/utils/formatPrice'
+import { Spinner } from '@shared/components/Spinner'
 
 export default function DashboardPage() {
-  const { data: products = [] } = useProducts()
+  const { data: products = [], isPending } = useProducts()
   const { totalItems, totalPrice } = useCart()
+
+  if (isPending) return <div className="flex justify-center py-20"><Spinner size="lg" /></div>
 
   const stats = [
     { label: 'Total Productos', value: products.length, icon: '🌿' },

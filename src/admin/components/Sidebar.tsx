@@ -15,7 +15,7 @@ export function Sidebar() {
         <span className="text-xl font-bold">🌿 OrganicoCR</span>
         <p className="text-green-300 text-xs mt-1">Panel Admin</p>
       </div>
-      <nav className="flex-1 p-4 space-y-1">
+      <nav aria-label="Administración" className="flex-1 p-4 space-y-1">
         {links.map(({ to, label, icon, end }) => (
           <NavLink
             key={to}

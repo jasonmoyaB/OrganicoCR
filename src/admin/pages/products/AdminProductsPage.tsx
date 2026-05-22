@@ -4,7 +4,9 @@ import { formatPrice } from '@shared/utils/formatPrice'
 import { Spinner } from '@shared/components/Spinner'
 
 export default function AdminProductsPage() {
-  const { data: products, isPending } = useProducts()
+  const { data: products, isPending, isError } = useProducts()
+
+  if (isError) return <p className="p-8 text-red-600">Error al cargar los productos.</p>
 
   return (
     <div className="p-8">
@@ -33,31 +35,42 @@ export default function AdminProductsPage() {
               </tr>
             </thead>
             <tbody className="divide-y divide-stone-100">
-              {products?.map(product => (
-                <tr key={product.id} className="hover:bg-stone-50">
-                  <td className="px-6 py-4">
-                    <div className="flex items-center gap-3">
-                      <img src={product.imageUrl} alt={product.name} className="w-10 h-10 rounded-lg object-cover" />
-                      <span className="font-medium text-stone-800">{product.name}</span>
-                    </div>
-                  </td>
-                  <td className="px-6 py-4 text-green-700 font-medium">{formatPrice(product.price)}</td>
-                  <td className="px-6 py-4">
-                    <span className={product.stock > 0 ? 'text-green-600' : 'text-red-500 font-medium'}>
-                      {product.stock}
-                    </span>
-                  </td>
-                  <td className="px-6 py-4">{product.isOrganic ? '✅' : '—'}</td>
-                  <td className="px-6 py-4 text-right">
-                    <Link
-                      to={`/admin/products/${product.id}`}
-                      className="text-green-600 hover:text-green-800 font-medium"
-                    >
-                      Editar
+              {!products?.length ? (
+                <tr>
+                  <td colSpan={5} className="px-6 py-12 text-center text-stone-400">
+                    No hay productos aún.{' '}
+                    <Link to="/admin/products/new" className="text-green-600 hover:underline">
+                      Crear el primero
                     </Link>
                   </td>
                 </tr>
-              ))}
+              ) : (
+                products.map(product => (
+                  <tr key={product.id} className="hover:bg-stone-50">
+                    <td className="px-6 py-4">
+                      <div className="flex items-center gap-3">
+                        <img src={product.imageUrl} alt={product.name} className="w-10 h-10 rounded-lg object-cover" />
+                        <span className="font-medium text-stone-800">{product.name}</span>
+                      </div>
+                    </td>
+                    <td className="px-6 py-4 text-green-700 font-medium">{formatPrice(product.price)}</td>
+                    <td className="px-6 py-4">
+                      <span className={product.stock > 0 ? 'text-green-600' : 'text-red-500 font-medium'}>
+                        {product.stock}
+                      </span>
+                    </td>
+                    <td className="px-6 py-4">{product.isOrganic ? '✅' : '—'}</td>
+                    <td className="px-6 py-4 text-right">
+                      <Link
+                        to={`/admin/products/${product.id}`}
+                        className="text-green-600 hover:text-green-800 font-medium"
+                      >
+                        Editar
+                      </Link>
+                    </td>
+                  </tr>
+                ))
+              )}
             </tbody>
           </table>
         </div>
