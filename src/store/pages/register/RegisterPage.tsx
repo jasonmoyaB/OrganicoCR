@@ -55,7 +55,7 @@ export default function RegisterPage() {
 
       {/* Faint texture */}
       <img
-        src="https://picsum.photos/seed/costarica-nature-mist/1920/1080"
+        src="public/FotoLogin-register/fotoRegister.jpg"
         alt=""
         aria-hidden="true"
         className="absolute inset-0 w-full h-full object-cover pointer-events-none"

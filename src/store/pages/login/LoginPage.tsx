@@ -56,7 +56,7 @@ export default function LoginPage() {
       {/* LEFT — cinematic editorial panel */}
       <div className="auth-left">
         <img
-          src="https://picsum.photos/seed/costarica-farm-golden-hour/1920/1080"
+          src="public/FotoLogin-register/fotoLogin.jpg"
           alt=""
           aria-hidden="true"
           className="auth-left-img"

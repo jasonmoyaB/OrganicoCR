@@ -1,4 +1,5 @@
-import { Outlet, Link } from 'react-router-dom'
+import { useEffect } from 'react'
+import { Outlet, Link, useLocation } from 'react-router-dom'
 import { DynamicIslandNav } from '../components/DynamicIslandNav'
 import { WhatsAppWidget } from '../components/WhatsAppWidget'
 
@@ -11,6 +12,11 @@ const FOOTER_LINKS = [
 ]
 
 export function StoreLayout() {
+  const { pathname } = useLocation()
+
+  useEffect(() => {
+    window.scrollTo(0, 0)
+  }, [pathname])
   return (
     <div className="flex flex-col min-h-screen bg-brand-cream">
       <DynamicIslandNav />
@@ -88,7 +94,7 @@ export function StoreLayout() {
 
           <div className="border-t border-[#1a1a1a] pt-8 text-center">
             <p className="text-gray-600 text-[0.9375rem]">
-              &copy; 2026 OrganicoCR &mdash; Productos organicos de Costa Rica
+              &copy; {new Date().getFullYear()} OrganicoCR &mdash; Productos organicos de Costa Rica
             </p>
           </div>
         </div>
