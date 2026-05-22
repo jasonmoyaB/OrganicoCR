@@ -16,6 +16,7 @@ const emptyForm: FormData = {
   stock: 0,
   isOrganic: true,
   isFeatured: false,
+  presentation: null,
 }
 
 export default function AdminProductFormPage() {

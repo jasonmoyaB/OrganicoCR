@@ -1,7 +1,9 @@
+import { WHATSAPP_NUMBER } from '@shared/config/env'
+
 export function WhatsAppButton() {
   return (
     <a
-      href="https://wa.me/50687138944"
+      href={`https://wa.me/${WHATSAPP_NUMBER}`}
       target="_blank"
       rel="noopener noreferrer"
       aria-label="Chatear por WhatsApp"

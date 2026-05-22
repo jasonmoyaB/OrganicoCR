@@ -1,8 +1,9 @@
 import { useRef, useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import gsap from 'gsap'
 import { useGSAP } from '@gsap/react'
 import { PasswordToggle } from '@store/components/PasswordToggle'
+import { supabase } from '@/utils/supabase'
 
 function ChevronLeft() {
   return (
@@ -21,7 +22,12 @@ const TRUST = [
 
 export default function LoginPage() {
   const pageRef = useRef<HTMLDivElement>(null)
+  const navigate = useNavigate()
   const [showPassword, setShowPassword] = useState(false)
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
+  const [submitting, setSubmitting] = useState(false)
+  const [error, setError] = useState('')
 
   useGSAP(() => {
     gsap.from('.auth-left-img', {
@@ -106,7 +112,18 @@ export default function LoginPage() {
             </p>
           </div>
 
-          <form onSubmit={e => e.preventDefault()} className="flex flex-col gap-4">
+          <form
+            onSubmit={async e => {
+              e.preventDefault()
+              setError('')
+              setSubmitting(true)
+              const { error: authError } = await supabase.auth.signInWithPassword({ email, password })
+              setSubmitting(false)
+              if (authError) { setError(authError.message); return }
+              navigate('/')
+            }}
+            className="flex flex-col gap-4"
+          >
             <div className="login-field">
               <label htmlFor="login-email" className="form-label form-label--light">
                 Correo electronico
@@ -115,6 +132,9 @@ export default function LoginPage() {
                 id="login-email"
                 type="email"
                 placeholder="tu@correo.com"
+                value={email}
+                onChange={e => setEmail(e.target.value)}
+                required
                 className="form-input form-input--light"
               />
             </div>
@@ -136,6 +156,9 @@ export default function LoginPage() {
                   id="login-password"
                   type={showPassword ? 'text' : 'password'}
                   placeholder="••••••••"
+                  value={password}
+                  onChange={e => setPassword(e.target.value)}
+                  required
                   className="form-input form-input--light pr-12"
                 />
                 <PasswordToggle
@@ -145,9 +168,13 @@ export default function LoginPage() {
               </div>
             </div>
 
+            {error && (
+              <p className="text-sm text-red-500" role="alert">{error}</p>
+            )}
+
             <div className="login-field mt-1">
-              <button type="submit" className="btn-auth-submit">
-                Ingresar
+              <button type="submit" disabled={submitting} className="btn-auth-submit disabled:opacity-50">
+                {submitting ? 'Ingresando...' : 'Ingresar'}
               </button>
             </div>
 

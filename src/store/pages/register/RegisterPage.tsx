@@ -1,9 +1,10 @@
 import { useRef, useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import gsap from 'gsap'
 import { useGSAP } from '@gsap/react'
 import { LeafIcon } from '@shared/components/icons/LeafIcon'
 import { PasswordToggle } from '@store/components/PasswordToggle'
+import { supabase } from '@/utils/supabase'
 
 function ChevronLeft() {
   return (
@@ -15,15 +16,18 @@ function ChevronLeft() {
 
 gsap.registerPlugin(useGSAP)
 
-const NAME_FIELDS = [
-  { id: 'nombre', label: 'Nombre', type: 'text', placeholder: 'Tu nombre' },
-  { id: 'apellido', label: 'Apellido', type: 'text', placeholder: 'Tu apellido' },
-]
-
 export default function RegisterPage() {
   const pageRef = useRef<HTMLDivElement>(null)
+  const navigate = useNavigate()
+  const [nombre, setNombre] = useState('')
+  const [apellido, setApellido] = useState('')
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
+  const [confirmPassword, setConfirmPassword] = useState('')
   const [showPassword, setShowPassword] = useState(false)
   const [showConfirmPassword, setShowConfirmPassword] = useState(false)
+  const [submitting, setSubmitting] = useState(false)
+  const [error, setError] = useState('')
 
   useGSAP(() => {
     gsap.from('.register-card', {
@@ -79,16 +83,36 @@ export default function RegisterPage() {
           </div>
         </div>
 
-        <form onSubmit={e => e.preventDefault()} className="flex flex-col gap-4">
+        <form
+          onSubmit={async e => {
+            e.preventDefault()
+            setError('')
+            if (password !== confirmPassword) { setError('Las contrasenas no coinciden'); return }
+            setSubmitting(true)
+            const { error: authError } = await supabase.auth.signUp({
+              email,
+              password,
+              options: {
+                data: { nombre, apellido },
+              },
+            })
+            setSubmitting(false)
+            if (authError) { setError(authError.message); return }
+            navigate('/login')
+          }}
+          className="flex flex-col gap-4"
+        >
 
           {/* Name row */}
           <div className="register-field register-field-grid">
-            {NAME_FIELDS.map(f => (
-              <div key={f.id}>
-                <label htmlFor={f.id} className="form-label form-label--light">{f.label}</label>
-                <input id={f.id} type={f.type} placeholder={f.placeholder} className="form-input form-input--light" />
-              </div>
-            ))}
+            <div>
+              <label htmlFor="nombre" className="form-label form-label--light">Nombre</label>
+              <input id="nombre" type="text" placeholder="Tu nombre" value={nombre} onChange={e => setNombre(e.target.value)} required className="form-input form-input--light" />
+            </div>
+            <div>
+              <label htmlFor="apellido" className="form-label form-label--light">Apellido</label>
+              <input id="apellido" type="text" placeholder="Tu apellido" value={apellido} onChange={e => setApellido(e.target.value)} required className="form-input form-input--light" />
+            </div>
           </div>
 
           {/* Email */}
@@ -100,6 +124,9 @@ export default function RegisterPage() {
               id="reg-email"
               type="email"
               placeholder="tu@correo.com"
+              value={email}
+              onChange={e => setEmail(e.target.value)}
+              required
               className="form-input form-input--light"
             />
           </div>
@@ -113,6 +140,9 @@ export default function RegisterPage() {
                   id="password"
                   type={showPassword ? 'text' : 'password'}
                   placeholder="••••••••"
+                  value={password}
+                  onChange={e => setPassword(e.target.value)}
+                  required
                   className="form-input form-input--light pr-12"
                 />
                 <PasswordToggle
@@ -128,6 +158,9 @@ export default function RegisterPage() {
                   id="confirm-password"
                   type={showConfirmPassword ? 'text' : 'password'}
                   placeholder="••••••••"
+                  value={confirmPassword}
+                  onChange={e => setConfirmPassword(e.target.value)}
+                  required
                   className="form-input form-input--light pr-12"
                 />
                 <PasswordToggle
@@ -138,10 +171,14 @@ export default function RegisterPage() {
             </div>
           </div>
 
+          {error && (
+            <p className="text-sm text-red-500" role="alert">{error}</p>
+          )}
+
           {/* Submit */}
           <div className="register-field mt-2">
-            <button type="submit" className="btn-auth-submit">
-              Crear Cuenta
+            <button type="submit" disabled={submitting} className="btn-auth-submit disabled:opacity-50">
+              {submitting ? 'Creando cuenta...' : 'Crear Cuenta'}
             </button>
           </div>
 
