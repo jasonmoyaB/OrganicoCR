@@ -1,10 +1,6 @@
-import { useRef, useEffect } from 'react'
+import { useRef, useEffect, useState } from 'react'
 import gsap from 'gsap'
-
-const FIELDS = [
-  { id: 'nombre', label: 'Nombre completo', type: 'text', placeholder: 'Tu nombre' },
-  { id: 'telefono', label: 'Numero de telefono', type: 'tel', placeholder: '8888-8888' },
-]
+import { supabase } from '@/utils/supabase'
 
 const CONTACT_INFO = [
   { icon: 'M20 10c0 6-8 12-8 12S4 16 4 10a8 8 0 0 1 16 0Z', hasSub: true, label: 'Ubicacion', value: 'Heredia, Costa Rica' },
@@ -16,6 +12,12 @@ export default function ContactanosPage() {
   const formRef = useRef<HTMLDivElement>(null)
   const infoRef = useRef<HTMLDivElement>(null)
   const headingRef = useRef<HTMLHeadingElement>(null)
+  const [nombre, setNombre] = useState('')
+  const [telefono, setTelefono] = useState('')
+  const [mensaje, setMensaje] = useState('')
+  const [submitting, setSubmitting] = useState(false)
+  const [error, setError] = useState('')
+  const [sent, setSent] = useState(false)
 
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -80,39 +82,64 @@ export default function ContactanosPage() {
           </div>
 
           <div ref={formRef} className="lg:col-span-3">
-            <form onSubmit={e => e.preventDefault()} className="flex flex-col gap-4">
-              <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
-                {FIELDS.map(field => (
-                  <div key={field.id}>
-                    <label htmlFor={field.id} className="form-label form-label--light">
-                      {field.label}
-                    </label>
-                    <input
-                      id={field.id}
-                      type={field.type}
-                      placeholder={field.placeholder}
-                      className="form-input form-input--light"
-                    />
+            {sent ? (
+              <div className="rounded-2xl border border-green-200 bg-green-50 p-8 text-center">
+                <svg className="mx-auto mb-3 h-10 w-10 text-green-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+                <h3 className="text-lg font-bold text-green-800">Mensaje enviado</h3>
+                <p className="mt-1 text-sm text-green-600">Gracias por contactarnos. Te responderemos pronto.</p>
+              </div>
+            ) : (
+              <form
+                onSubmit={async e => {
+                  e.preventDefault()
+                  setError('')
+                  setSubmitting(true)
+                  const { error: insertError } = await supabase.from('contact_messages').insert({
+                    nombre,
+                    telefono,
+                    mensaje,
+                  })
+                  setSubmitting(false)
+                  if (insertError) { setError(insertError.message); return }
+                  setSent(true)
+                }}
+                className="flex flex-col gap-4"
+              >
+                <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+                  <div>
+                    <label htmlFor="nombre" className="form-label form-label--light">Nombre completo</label>
+                    <input id="nombre" type="text" placeholder="Tu nombre" value={nombre} onChange={e => setNombre(e.target.value)} required className="form-input form-input--light" />
                   </div>
-                ))}
-              </div>
+                  <div>
+                    <label htmlFor="telefono" className="form-label form-label--light">Numero de telefono</label>
+                    <input id="telefono" type="tel" placeholder="8888-8888" value={telefono} onChange={e => setTelefono(e.target.value)} required className="form-input form-input--light" />
+                  </div>
+                </div>
 
-              <div>
-                <label htmlFor="mensaje" className="form-label form-label--light">
-                  Mensaje
-                </label>
-                <textarea
-                  id="mensaje"
-                  rows={5}
-                  placeholder="Cuentanos en que podemos ayudarte..."
-                  className="form-input form-input--light resize-none"
-                />
-              </div>
+                <div>
+                  <label htmlFor="mensaje" className="form-label form-label--light">Mensaje</label>
+                  <textarea
+                    id="mensaje"
+                    rows={5}
+                    placeholder="Cuentanos en que podemos ayudarte..."
+                    value={mensaje}
+                    onChange={e => setMensaje(e.target.value)}
+                    required
+                    className="form-input form-input--light resize-none"
+                  />
+                </div>
 
-              <button type="submit" className="btn-form-submit mt-2 w-full sm:w-auto">
-                Enviar Mensaje
-              </button>
-            </form>
+                {error && (
+                  <p className="text-sm text-red-500" role="alert">{error}</p>
+                )}
+
+                <button type="submit" disabled={submitting} className="btn-form-submit mt-2 w-full sm:w-auto disabled:opacity-50">
+                  {submitting ? 'Enviando...' : 'Enviar Mensaje'}
+                </button>
+              </form>
+            )}
           </div>
         </div>
       </div>

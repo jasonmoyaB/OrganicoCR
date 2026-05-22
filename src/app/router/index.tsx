@@ -1,4 +1,4 @@
-import { createBrowserRouter, RouterProvider } from 'react-router-dom'
+import { createBrowserRouter, RouterProvider, isRouteErrorResponse, useRouteError, Link } from 'react-router-dom'
 import { lazy, Suspense } from 'react'
 import { Spinner } from '@shared/components/Spinner'
 import { StoreLayout } from '@store/layouts/StoreLayout'
@@ -8,6 +8,22 @@ function Loading() {
   return (
     <div className="flex h-screen items-center justify-center">
       <Spinner size="lg" />
+    </div>
+  )
+}
+
+function RouteErrorFallback() {
+  const error = useRouteError()
+  const is404 = isRouteErrorResponse(error) && error.status === 404
+  return (
+    <div className="flex min-h-screen flex-col items-center justify-center gap-3 bg-white px-4">
+      <h1 className="text-2xl font-bold text-stone-800">{is404 ? 'Pagina no encontrada' : 'Algo salio mal'}</h1>
+      <p className="text-sm text-stone-500">
+        {is404 ? 'La pagina que buscas no existe.' : 'Ocurrio un error inesperado en esta pagina.'}
+      </p>
+      <Link to="/" className="mt-2 rounded-lg bg-green-600 px-5 py-2 text-sm font-medium text-white hover:bg-green-700 transition-colors">
+        Volver al inicio
+      </Link>
     </div>
   )
 }
@@ -37,6 +53,7 @@ const router = createBrowserRouter([
   {
     path: '/',
     element: <StoreLayout />,
+    errorElement: <RouteErrorFallback />,
     children: [
       { index: true, element: wrap(HomePage) },
       { path: 'catalog', element: wrap(CatalogPage) },
@@ -46,11 +63,12 @@ const router = createBrowserRouter([
       { path: 'contactanos', element: wrap(ContactanosPage) },
     ],
   },
-  { path: '/login', element: wrap(LoginPage) },
-  { path: '/register', element: wrap(RegisterPage) },
+  { path: '/login', element: wrap(LoginPage), errorElement: <RouteErrorFallback /> },
+  { path: '/register', element: wrap(RegisterPage), errorElement: <RouteErrorFallback /> },
   {
     path: '/admin',
     element: <AdminLayout />,
+    errorElement: <RouteErrorFallback />,
     children: [
       { index: true, element: wrap(DashboardPage) },
       { path: 'products', element: wrap(AdminProductsPage) },

@@ -1,5 +1,6 @@
 import { useState, useRef, useEffect } from 'react'
 import gsap from 'gsap'
+import { WHATSAPP_NUMBER } from '@shared/config/env'
 
 const QUICK_ACTIONS = [
   { label: 'Quiero hacer un pedido', message: 'Hola! Quiero hacer un pedido de productos organicos.' },
@@ -30,7 +31,7 @@ export function WhatsAppWidget() {
     const text = message
       ? encodeURIComponent(message)
       : encodeURIComponent('Hola! Estoy interesado en sus productos.')
-    window.open(`https://wa.me/50687138944?text=${text}`, '_blank', 'noopener,noreferrer')
+    window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${text}`, '_blank', 'noopener,noreferrer')
     setOpen(false)
   }
 

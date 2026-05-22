@@ -6,6 +6,7 @@ import { useGSAP } from "@gsap/react";
 import { useProducts } from "@domains/catalog/hooks/useProducts";
 import { ProductCard } from "@store/components/ProductCard";
 import { Spinner } from "@shared/components/Spinner";
+import { WHATSAPP_NUMBER } from "@shared/config/env";
 
 gsap.registerPlugin(ScrollTrigger, useGSAP);
 
@@ -161,7 +162,7 @@ export default function HomePage() {
               Ver Productos
             </Link>
             <a
-              href="https://wa.me/50687138944"
+              href={`https://wa.me/${WHATSAPP_NUMBER}`}
               target="_blank"
               rel="noopener noreferrer"
               className="btn-hero-outline inline-flex items-center gap-2"
