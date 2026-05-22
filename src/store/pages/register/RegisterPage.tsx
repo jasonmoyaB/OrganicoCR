@@ -1,0 +1,143 @@
+import { useRef } from 'react'
+import { Link } from 'react-router-dom'
+import gsap from 'gsap'
+import { useGSAP } from '@gsap/react'
+import { LeafIcon } from '@shared/components/icons/LeafIcon'
+
+function ChevronLeft() {
+  return (
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+      <polyline points="15 18 9 12 15 6" />
+    </svg>
+  )
+}
+
+gsap.registerPlugin(useGSAP)
+
+const NAME_FIELDS = [
+  { id: 'nombre', label: 'Nombre', type: 'text', placeholder: 'Tu nombre' },
+  { id: 'apellido', label: 'Apellido', type: 'text', placeholder: 'Tu apellido' },
+]
+
+const PASSWORD_FIELDS = [
+  { id: 'password', label: 'Contrasena', type: 'password', placeholder: '••••••••' },
+  { id: 'confirm-password', label: 'Confirmar', type: 'password', placeholder: '••••••••' },
+]
+
+export default function RegisterPage() {
+  const pageRef = useRef<HTMLDivElement>(null)
+
+  useGSAP(() => {
+    gsap.from('.register-card', {
+      scale: 0.96,
+      opacity: 0,
+      duration: 0.75,
+      ease: 'power3.out',
+    })
+    gsap.from('.register-field', {
+      y: 22,
+      opacity: 0,
+      stagger: 0.07,
+      duration: 0.55,
+      delay: 0.35,
+      ease: 'power3.out',
+    })
+  }, { scope: pageRef })
+
+  return (
+    <div ref={pageRef} className="register-page">
+      <Link to="/" aria-label="Volver al inicio" className="back-home-btn">
+        <ChevronLeft />
+        Inicio
+      </Link>
+
+      {/* Ambient glows */}
+      <div aria-hidden="true" className="register-ambient register-ambient--tl" />
+      <div aria-hidden="true" className="register-ambient register-ambient--br" />
+
+      {/* Faint texture */}
+      <img
+        src="https://picsum.photos/seed/costarica-nature-mist/1920/1080"
+        alt=""
+        aria-hidden="true"
+        className="absolute inset-0 w-full h-full object-cover pointer-events-none"
+        style={{ opacity: 0.04, filter: 'saturate(0.3) contrast(1.2)' }}
+      />
+
+      <div className="register-card">
+
+        {/* Header */}
+        <div className="register-field flex items-center gap-3 mb-8">
+          <div className="w-11 h-11 bg-brand-green rounded-[0.875rem] flex items-center justify-center flex-shrink-0">
+            <LeafIcon size={20} color="white" />
+          </div>
+          <div>
+            <h1 className="text-[1.75rem] font-black text-brand-black tracking-[-0.035em] leading-tight">
+              Crea tu cuenta
+            </h1>
+            <p className="text-[0.875rem] text-gray-400 mt-0.5">
+              Empieza a comprar organico hoy
+            </p>
+          </div>
+        </div>
+
+        <form onSubmit={e => e.preventDefault()} className="flex flex-col gap-4">
+
+          {/* Name row */}
+          <div className="register-field register-field-grid">
+            {NAME_FIELDS.map(f => (
+              <div key={f.id}>
+                <label htmlFor={f.id} className="form-label form-label--light">{f.label}</label>
+                <input id={f.id} type={f.type} placeholder={f.placeholder} className="form-input form-input--light" />
+              </div>
+            ))}
+          </div>
+
+          {/* Email */}
+          <div className="register-field">
+            <label htmlFor="reg-email" className="form-label form-label--light">
+              Correo electronico
+            </label>
+            <input
+              id="reg-email"
+              type="email"
+              placeholder="tu@correo.com"
+              className="form-input form-input--light"
+            />
+          </div>
+
+          {/* Password row */}
+          <div className="register-field register-field-grid">
+            {PASSWORD_FIELDS.map(f => (
+              <div key={f.id}>
+                <label htmlFor={f.id} className="form-label form-label--light">{f.label}</label>
+                <input id={f.id} type={f.type} placeholder={f.placeholder} className="form-input form-input--light" />
+              </div>
+            ))}
+          </div>
+
+          {/* Submit */}
+          <div className="register-field mt-2">
+            <button type="submit" className="btn-auth-submit">
+              Crear Cuenta
+            </button>
+          </div>
+
+          {/* Sign in */}
+          <div className="register-field text-center">
+            <p className="text-[0.9375rem] text-gray-500">
+              Ya tienes cuenta?{' '}
+              <Link
+                to="/login"
+                className="text-brand-green font-semibold hover:text-brand-lime transition-colors"
+              >
+                Ingresar
+              </Link>
+            </p>
+          </div>
+
+        </form>
+      </div>
+    </div>
+  )
+}
