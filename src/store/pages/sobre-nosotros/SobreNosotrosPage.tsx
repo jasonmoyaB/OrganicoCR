@@ -119,7 +119,7 @@ export default function SobreNosotrosPage() {
           </div>
 
           {/* Right: Floating Image */}
-          <div className="relative h-96 lg:h-[500px] hidden lg:flex items-end justify-end">
+          <div className="relative h-72 lg:h-[500px] flex items-end justify-end">
             <div className="absolute inset-0 rounded-3xl overflow-hidden shadow-2xl">
               <img
                 ref={heroImageRef}
@@ -198,7 +198,7 @@ export default function SobreNosotrosPage() {
             100% { transform: translateX(calc(-50% - 1rem)); }
           }
           .animate-scroll {
-            animation: scroll 40s linear infinite;
+            animation: scroll 8s linear infinite;
           }
           .animate-scroll:hover {
             animation-play-state: paused;

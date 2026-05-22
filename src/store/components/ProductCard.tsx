@@ -23,13 +23,15 @@ export function ProductCard({ product }: Props) {
         )}
       </Link>
       <div className="p-4">
-        {product.isOrganic && (
-          <span className="text-xs bg-green-100 text-green-700 px-2 py-0.5 rounded-full font-medium">
-            🌿 Orgánico
-          </span>
-        )}
+        <div className="h-6 flex items-center mb-0">
+          {product.isOrganic && (
+            <span className="text-xs bg-green-100 text-green-700 px-2 py-0.5 rounded-full font-medium">
+              🌿 Orgánico
+            </span>
+          )}
+        </div>
         <Link to={`/catalog/${product.id}`}>
-          <h3 className="font-semibold text-stone-800 mt-2 hover:text-green-700 transition-colors line-clamp-2">
+          <h3 className="font-semibold text-stone-800 hover:text-green-700 transition-colors line-clamp-2">
             {product.name}
           </h3>
         </Link>
