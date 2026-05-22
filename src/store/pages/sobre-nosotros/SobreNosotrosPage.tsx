@@ -123,7 +123,7 @@ export default function SobreNosotrosPage() {
             <div className="absolute inset-0 rounded-3xl overflow-hidden shadow-2xl">
               <img
                 ref={heroImageRef}
-                src="/FotoOrganico_n.jpg"
+                src="https://yotzsagyxelwfftcatxo.supabase.co/storage/v1/object/public/imagenes/FotoOrganico_n.jpg"
                 alt="Finca orgánica en Heredia"
                 className="w-full h-full object-cover"
               />
